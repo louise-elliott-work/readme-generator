@@ -5,6 +5,16 @@ const inquirer = require("inquirer");
 // * array of questions for user
 const questions = [
     {
+        name: 'username',
+        type: 'input',
+        message: 'what is your GitHub username?'
+    },
+    {
+        name: 'email',
+        type: 'input',
+        message: 'what is your email address?'
+    },
+    {
         name: 'title',
         type: 'input',
         message: 'what is the title of your project?'
@@ -12,50 +22,57 @@ const questions = [
     {
         name: 'description',
         type: 'input',
-        message: 'describe your project briefly'
-    },
-    {
-        name: 'contents',
-        type: 'input',
-        message: 'what do you want to include in the table of contents?'
+        message: 'how would you describe your project?'
     },
     {
         name: 'licence',
         type: 'list',
         message: 'what licence do you want to use for this project?',
-        choices: ['licencetype1', 'MIT', 'etc']
+        choices: ['Creative Commons', 'MIT', 'none']
+    },
+    {
+        name: 'dependencies',
+        type: 'input',
+        message: 'what command should be run to install dependencies?',
+        default: 'npm i'
+    },
+    {
+        name: 'testing',
+        type: 'input',
+        message: 'what command should be run to carry out testing?',
+        default: 'npm test'
+    },
+    {
+        name: 'usage',
+        type: 'input',
+        message: 'what should the user know to use this repo effectively?',
+    },
+    {
+        name: 'contributions',
+        type: 'input',
+        message: 'what should the user do to contribute to the repo?',
     },
 ];
 
-// * prompt user and log answers
+// * prompt user with questions and log answers in README file
 inquirer
     .prompt(questions)
     .then((response) => {
-        fs.writeFile('userinput.html', JSON.stringify(response), (err) =>
-        err ? console.error(err) : console.log(response)
-        );
-        console.log(response)
-        const { title, description, contents, licence } = response;
-            console.log(title);
-            console.log(description);
-            console.log(contents);
-            console.log(licence);
-    });
-
-
-// // * function to generate markdown for README
-// function generateMarkdown(data) {
-//     const userInput = require("./userinput.html");
-//     console.log(userInput);
-//     console.log(`# ${data.title})`);
-//   }
-
-//   module.exports = generateMarkdown;
-
-// // function to initialize program
-// function init() {
-
-// }
-
-// // function call to initialize program
-// init();
+        const { username, email, title, description, licence, dependencies, testing, usage, contributions } = response;
+        fs.writeFile('README.md',
+        JSON.stringify
+        (`# ${title}
+        ## description
+        ${description}
+        ## licence
+        ${licence}
+        ## dependencies
+        ${dependencies},
+        ## testing
+        ${testing}
+        ## usage
+        ${usage}
+        ## contributions
+        ${contributions}
+        `),
+        (err) => err ? console.error(err) : console.log(response))});
