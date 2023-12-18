@@ -1,23 +1,21 @@
 // * variables
 const fs = require("fs");
-const path = require('path');
 const inquirer = require("inquirer");
-const generateMarkdown = require("./utils/generateMarkdown");
 
 // * array of questions for user
 const questions = [
     {
-        name: 'project-title',
+        name: 'title',
         type: 'input',
         message: 'what is the title of your project?'
     },
     {
-        name: 'project-description',
+        name: 'description',
         type: 'input',
         message: 'describe your project briefly'
     },
     {
-        name: 'contents-table',
+        name: 'contents',
         type: 'input',
         message: 'what do you want to include in the table of contents?'
     },
@@ -33,16 +31,26 @@ const questions = [
 inquirer
     .prompt(questions)
     .then((response) => {
-        fs.writeFile('userinput.txt', JSON.stringify(response), (err) =>
+        fs.writeFile('userinput.html', JSON.stringify(response), (err) =>
         err ? console.error(err) : console.log(response)
         );
+        console.log(response)
+        const { title, description, contents, licence } = response;
+            console.log(title);
+            console.log(description);
+            console.log(contents);
+            console.log(licence);
     });
 
-// // * function to write README file
-// function writeToFile() {
-//     console.log(response);
-// };
 
+// // * function to generate markdown for README
+// function generateMarkdown(data) {
+//     const userInput = require("./userinput.html");
+//     console.log(userInput);
+//     console.log(`# ${data.title})`);
+//   }
+
+//   module.exports = generateMarkdown;
 
 // // function to initialize program
 // function init() {
