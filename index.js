@@ -1,10 +1,15 @@
-// * variables
+// * requires
 const fs = require("fs");
 const inquirer = require("inquirer");
+const dayjs = require('dayjs')
 
-// * array of questions for user
+// * array of user prompts
 const questions = [
     {
+        name: 'fullName',
+        type: 'input',
+        message: 'What is your full name?'
+    },{
         name: 'username',
         type: 'input',
         message: 'What is your GitHub username?'
@@ -36,10 +41,10 @@ const questions = [
         message: 'What should the user know in order to use this repo effectively?',
     },
     {
-        name: 'licence',
+        name: 'license',
         type: 'list',
-        message: 'What licence do you want to use for this project?',
-        choices: ['none', 'Apache', 'GNU', 'MIT', 'Creative Commons']
+        message: 'What license do you want to use for this project?',
+        choices: ['Apache License 2.0', 'Creative Commons Zero v1.0 Universal', 'MIT License']
     },
     {
         name: 'contributions',
@@ -54,18 +59,38 @@ const questions = [
     },
 ];
 
+
+
 // * prompt user with questions and log answers in README file
 inquirer
     .prompt(questions)
     .then((response) => {
-        const { title, description, installation, usage, licence, contributions, testing } = response;
+        const { fullName, username, email, title, description, installation, usage, license, contributions, testing } = response;
+            var licenseText = "";
+            var licenseIcon = "";
+            if (license === "Apache License 2.0") {
+                licenseIcon = '![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)'
+                licenseText = 'Licensed under the Apache License, Version 2.0. You may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.';
+            }
+            else if (license === "Creative Commons Zero v1.0 Universal") {
+                licenseIcon = '![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)'
+                licenseText = 'The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.'
+            }
+            else if (license === "MIT License") {
+                licenseIcon = '![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)'
+                licenseText = 'Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.'
+            }
+            else {
+                licenseText = 'No license selected'};
+                
         fs.writeFile('README.md',
         (`# ${title}
+${licenseIcon}
 ## Contents
 [Description](#description)<br>
 [Installation](#installation)<br>
 [Usage](#usage)<br>
-[Licence](#licence)<br>
+[license](#license)<br>
 [Contributions](#contributions)<br>
 [Testing](#testing)<br>
 ## Description
@@ -74,8 +99,10 @@ ${description}
 ${installation}
 ## Usage
 ${usage}
-## Licence
-This project is ${licence} licensed.
+## license
+${dayjs().format('YYYY')} ${fullName}
+${license}
+${licenseText}
 ## Contributions
 ${contributions}
 ## Testing
