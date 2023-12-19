@@ -51,6 +51,13 @@ inquirer
         const { title, description, licence, dependencies, testing, usage, contributions } = response;
         fs.writeFile('README.md',
         (`# ${title}
+## contents
+description
+licence
+dependencies
+testing
+usage
+contributions
 ## description
 ${description}
 ## licence

@@ -1,13 +1,20 @@
-# Pawventure
+# House hunt
+## contents
+[description](#description)<br>
+[licence](#licence)<br>
+[dependencies](#dependencies)<br>
+[testing](#testing)<br>
+[usage](#usage)<br>
+[contributions](#contributions)<br>
 ## description
-dog fun
+finding a new home
 ## licence
 MIT
 ## dependencies
 npm i,
 ## testing
-
+npm test
 ## usage
-everything
+It's annoying
 ## contributions
-ask me
+Help
