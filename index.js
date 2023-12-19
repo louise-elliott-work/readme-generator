@@ -90,25 +90,25 @@ ${licenseIcon}
 [Description](#description)<br>
 [Installation](#installation)<br>
 [Usage](#usage)<br>
-[license](#license)<br>
+[License](#license)<br>
 [Contributions](#contributions)<br>
 [Testing](#testing)<br>
 ## Description
 ${description}
-## Dependencies
-${installation}
+## Installation
+Run the following command in order to install dependencies: ${installation}
 ## Usage
 ${usage}
-## license
+## License
 ${dayjs().format('YYYY')} ${fullName}
 ${license}
 ${licenseText}
 ## Contributions
 ${contributions}
 ## Testing
-${testing}
+Run the following command in order to test: ${testing}
 ## Questions
-To view the repo relating to this tool, please visit https://github.com/${username}.
-For any questions relating to this tool, please contact ${email}.
+To view the repo relating to this tool, visit https://github.com/${username}.
+For any questions relating to this tool, contact ${email}.
 `),
         (err) => err ? console.error(err) : console.log('README generated'))});
