@@ -1,14 +1,13 @@
-# aa
-        ## description
-        A
-        ## licence
-        Creative Commons
-        ## dependencies
-        npm i,
-        ## testing
-        npm test
-        ## usage
-        
-        ## contributions
-        
-        
+# Pawventure
+## description
+dog fun
+## licence
+MIT
+## dependencies
+npm i,
+## testing
+
+## usage
+everything
+## contributions
+ask me
