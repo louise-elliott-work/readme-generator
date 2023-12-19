@@ -13,6 +13,7 @@ This is a command-line application that generates a professional README file bas
 Run the following command in order to install dependencies: npm i
 ## Usage
 In order to initiate the process, the user must type into the command line 'node index.js' then answer the prompts. Once all prompts have been answered, a message will appear on the log saying 'README generated' and the user will see the README file appear in their folder.
+A video walk-through can be seen here: https://drive.google.com/file/d/1MLPqUpX8kmLZykr-a4RnbJoNpbok66Ax/view?usp=sharing
 ## License
 2023 Louise Elliott
 MIT License
