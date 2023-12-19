@@ -4,7 +4,7 @@
 [Description](#description)<br>
 [Installation](#installation)<br>
 [Usage](#usage)<br>
-[license](#license)<br>
+[License](#license)<br>
 [Contributions](#contributions)<br>
 [Testing](#testing)<br>
 ## Description
