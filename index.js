@@ -51,17 +51,17 @@ inquirer
         const { title, description, licence, dependencies, testing, usage, contributions } = response;
         fs.writeFile('README.md',
         (`# ${title}
-        ## description
-        ${description}
-        ## licence
-        ${licence}
-        ## dependencies
-        ${dependencies},
-        ## testing
-        ${testing}
-        ## usage
-        ${usage}
-        ## contributions
-        ${contributions}
-        `),
+## description
+${description}
+## licence
+${licence}
+## dependencies
+${dependencies},
+## testing
+${testing}
+## usage
+${usage}
+## contributions
+${contributions}
+`),
         (err) => err ? console.error(err) : console.log(response))});
