@@ -5,16 +5,6 @@ const inquirer = require("inquirer");
 // * array of questions for user
 const questions = [
     {
-        name: 'username',
-        type: 'input',
-        message: 'what is your GitHub username?'
-    },
-    {
-        name: 'email',
-        type: 'input',
-        message: 'what is your email address?'
-    },
-    {
         name: 'title',
         type: 'input',
         message: 'what is the title of your project?'
@@ -58,9 +48,8 @@ const questions = [
 inquirer
     .prompt(questions)
     .then((response) => {
-        const { username, email, title, description, licence, dependencies, testing, usage, contributions } = response;
+        const { title, description, licence, dependencies, testing, usage, contributions } = response;
         fs.writeFile('README.md',
-        JSON.stringify
         (`# ${title}
         ## description
         ${description}
